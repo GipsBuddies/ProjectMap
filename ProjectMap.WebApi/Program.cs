@@ -47,8 +47,6 @@ var app = builder.Build();
 
 //authorization services
 
-app.UseAuthorization();
-
 
 
 app.MapGroup(prefix: "/account")
@@ -69,7 +67,8 @@ app.MapPost(pattern: "/account/logout",
     .RequireAuthorization();
 
 //results that all endpoints in controllers are required by login.
-app.MapControllers().RequireAuthorization();
+//commented for now because no controllers
+//app.MapControllers().RequireAuthorization();
 
 
 
