@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectMap", "./ProjectMap.WebApi/ProjectMap.WebApi.csproj", "{977C502C-8275-4B1D-820E-3FE0E2059658}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectMap.WebApi", "ProjectMap.WebApi\ProjectMap.WebApi.csproj", "{977C502C-8275-4B1D-820E-3FE0E2059658}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
