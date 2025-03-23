@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using ProjectMap.WebApi;
+using ProjectMap.WebApi.Repositories;
 
 
 //authorization services means its used for registraion and logging in.
@@ -41,6 +42,8 @@ builder.Services
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<ProjectMap.WebApi.Interfaces.IAuthenticationService, AspNetIdentityAuthenticationService>();
 
+builder.Services.AddTransient<AppointmentRepository, AppointmentRepository>(o => new AppointmentRepository(sqlConnectionString));
+
 
 
 var app = builder.Build();
@@ -67,8 +70,7 @@ app.MapPost(pattern: "/account/logout",
     .RequireAuthorization();
 
 //results that all endpoints in controllers are required by login.
-//commented for now because no controllers
-//app.MapControllers().RequireAuthorization();
+app.MapControllers().RequireAuthorization();
 
 
 
