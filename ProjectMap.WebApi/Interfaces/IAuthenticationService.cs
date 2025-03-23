@@ -2,7 +2,7 @@
 {
     public interface IAuthenticationService
     {
-        //Returns the user name of the authenticated user
+        //Returns the user id of the authenticated user
 
         string? GetCurrentAuthenticatedUserId();
     }

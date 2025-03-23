@@ -21,5 +21,25 @@ namespace ProjectMap.WebApi.Repositories
                 return appointment;
             }
         }
+
+        public async Task<List<Appointment>> ReadByUserIdAsync(Guid userId)
+        {
+            using (var sqlConnection = new SqlConnection(sqlConnectionString))
+            {
+                var query = "SELECT * FROM [Appointments] WHERE Userid = @Userid";
+
+                var result = await sqlConnection.QueryAsync<Appointment>(query, new { UserId = userId });
+
+                return result.ToList();
+            }
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            using (var sqlConnection = new SqlConnection(sqlConnectionString))
+            {
+                await sqlConnection.ExecuteAsync("DELETE FROM [Appointments] WHERE Id = @Id", new { Id = id});
+            }
+        }
     }
 }
