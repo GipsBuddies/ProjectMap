@@ -17,7 +17,7 @@ namespace ProjectMap.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                var environmentId = await sqlConnection.ExecuteAsync("INSERT INTO [Appointments] (Id, UserId, Date, Reason) VALUES (@Id, @UserId, @Date, @Reason)", appointment);
+                var result = await sqlConnection.ExecuteAsync("INSERT INTO [Appointments] (Id, UserId, Date, Reason) VALUES (@Id, @UserId, @Date, @Reason)", appointment);
                 return appointment;
             }
         }
