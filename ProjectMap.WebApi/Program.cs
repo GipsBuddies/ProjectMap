@@ -43,6 +43,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<ProjectMap.WebApi.Interfaces.IAuthenticationService, AspNetIdentityAuthenticationService>();
 
 builder.Services.AddTransient<AppointmentRepository, AppointmentRepository>(o => new AppointmentRepository(sqlConnectionString));
+builder.Services.AddScoped<ChoiceRouteRepository, ChoiceRouteRepository>(o => new ChoiceRouteRepository(sqlConnectionString));
 
 
 
