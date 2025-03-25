@@ -46,7 +46,6 @@ namespace ProjectMap.WebApi.Repositories
             }
         }
 
-
         public async Task<IEnumerable<ChoiceRouteModel>> ReadAsync(Guid userId)
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
