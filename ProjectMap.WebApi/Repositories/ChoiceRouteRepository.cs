@@ -43,8 +43,7 @@ namespace ProjectMap.WebApi.Repositories
                                                     "Finish = @Finish, " +
                                                     "NamePatient = @NamePatient, " +
                                                     "BirthDate = @BirthDate, " +
-                                                    "NameDoctor = @NameDoctor, " +
-                                                    "WHERE Id = @Id"
+                                                    "NameDoctor = @NameDoctor"
                                                     , choiceRoute);
 
             }
