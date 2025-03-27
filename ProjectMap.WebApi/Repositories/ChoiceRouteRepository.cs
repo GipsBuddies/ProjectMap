@@ -17,7 +17,7 @@ namespace ProjectMap.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                var result = await sqlConnection.ExecuteAsync("INSERT INTO [ChoiceRoute] (Id, UserId, Path, Begining, Middel, Finish) VALUES (@Id, @UserId, @Path, @Begining, @Middel, @Finish)", choiceRoute );
+                var result = await sqlConnection.ExecuteAsync("INSERT INTO [ChoiceRoute] (Id, UserId, Path, Begining, Middel, Finish, NamePatient, BirthDate, NameDoctor) VALUES (@Id, @UserId, @Path, @Begining, @Middel, @Finish, @NamePatient, @BirthDate, @NameDoctor)", choiceRoute );
                 return choiceRoute;
             }
         }
@@ -40,8 +40,12 @@ namespace ProjectMap.WebApi.Repositories
                                                     "Path = @Path, " +
                                                     "Begining = @Begining, " +
                                                     "Middel = @Middel, " +
-                                                    "Finish = @Finish" 
-                                                , choiceRoute);
+                                                    "Finish = @Finish, " +
+                                                    "NamePatient = @NamePatient, " +
+                                                    "BirthDate = @BirthDate, " +
+                                                    "NameDoctor = @NameDoctor, " +
+                                                    "WHERE Id = @Id"
+                                                    , choiceRoute);
 
             }
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectMap.WebApi.Interfaces;
 using ProjectMap.WebApi.Models;
 using ProjectMap.WebApi.Repositories;
@@ -9,7 +10,6 @@ namespace ProjectMap.WebApi.Controllers
     [Route("ChoiceRoute")]
     public class ChoiceRouteController : Controller
     {
-
         private readonly ChoiceRouteRepository _choiceRouteRepository;
         private readonly ILogger<ChoiceRouteController> _logger;
         private readonly IAuthenticationService _authenticationService;
@@ -22,6 +22,7 @@ namespace ProjectMap.WebApi.Controllers
         }
 
         [HttpPost(Name = "CreateChoiceRoute")]
+        [Authorize]
         public async Task<ActionResult> Add(ChoiceRouteModel choiceRoute)
         {
             choiceRoute.Id = Guid.NewGuid();
@@ -31,6 +32,7 @@ namespace ProjectMap.WebApi.Controllers
         }
 
         [HttpGet(Name = "ReadChoiceRoute")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Appointment>>> Get()
         {
             Guid userId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
@@ -39,8 +41,11 @@ namespace ProjectMap.WebApi.Controllers
         }
 
         [HttpPut(Name = "UpdateChoiceRoute")]
+        [Authorize] 
         public async Task<ActionResult> Update(Guid choiceRouteId, ChoiceRouteModel newChoiceRoute)
         {
+            Guid userId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
+
             var existingChoiceRoute= await _choiceRouteRepository.ReadAsync(choiceRouteId);
 
             if (existingChoiceRoute == null)

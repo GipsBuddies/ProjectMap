@@ -8,5 +8,8 @@
         public bool Begining { get; set; }
         public bool Middel { get; set; }
         public bool Finish { get; set; }
+        public string NamePatient { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string NameDoctor { get; set; }
     }
 }
