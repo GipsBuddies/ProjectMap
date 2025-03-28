@@ -44,12 +44,13 @@ namespace ProjectMap.WebApi.Controllers
         [Authorize] 
         public async Task<ActionResult> Update(Guid choiceRouteId, ChoiceRouteModel newChoiceRoute)
         {
-            Guid userId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
 
             var existingChoiceRoute= await _choiceRouteRepository.ReadAsync(choiceRouteId);
 
             if (existingChoiceRoute == null)
                 return NotFound();
+
+            newChoiceRoute.UserId  = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
 
             await _choiceRouteRepository.UpdateAsync(newChoiceRoute);
 

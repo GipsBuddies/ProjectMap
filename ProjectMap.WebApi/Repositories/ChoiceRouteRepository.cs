@@ -17,7 +17,7 @@ namespace ProjectMap.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                var result = await sqlConnection.ExecuteAsync("INSERT INTO [ChoiceRoute] (Id, UserId, Path, Begining, Middel, Finish, NamePatient, BirthDate, NameDoctor) VALUES (@Id, @UserId, @Path, @Begining, @Middel, @Finish, @NamePatient, @BirthDate, @NameDoctor)", choiceRoute );
+                var result = await sqlConnection.ExecuteAsync("INSERT INTO [ChoiceRoute] (Id, UserId, Path, Begining, Middel, Finish, NamePatient, BirthDate, NameDoctor, characterType, castColor, hasCastOnLeftArm, hasCastOnRightArm, hasCastOnLeftLeg, hasCastOnRightLeg) VALUES (@Id, @UserId, @Path, @Begining, @Middel, @Finish, @NamePatient, @BirthDate, @NameDoctor, @characterType, @castColor, @hasCastOnLeftArm, @hasCastOnRightArm, @hasCastOnLeftLeg, @hasCastOnRightLeg)", choiceRoute );
                 return choiceRoute;
             }
         }
@@ -25,7 +25,7 @@ namespace ProjectMap.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                var query = "SELECT * FROM [ChoiceRoute] WHERE Userid = @Userid";
+                var query = "SELECT * FROM [ChoiceRoute] WHERE UserId = @UserId";
 
                 return await sqlConnection.QueryFirstOrDefaultAsync<ChoiceRouteModel>(query, new { userId });
 
@@ -43,7 +43,14 @@ namespace ProjectMap.WebApi.Repositories
                                                     "Finish = @Finish, " +
                                                     "NamePatient = @NamePatient, " +
                                                     "BirthDate = @BirthDate, " +
-                                                    "NameDoctor = @NameDoctor"
+                                                    "NameDoctor = @NameDoctor, " +
+                                                    "characterType = @characterType, " +
+                                                    "castColor = @castColor, " +
+                                                    "hasCastOnLeftArm = @hasCastOnLeftArm, " +
+                                                    "hasCastOnRightArm = @hasCastOnRightArm, " +
+                                                    "hasCastOnLeftLeg = @hasCastOnLeftLeg, " +
+                                                    "hasCastOnRightLeg = @hasCastOnRightLeg " +
+                                                    "WHERE UserId = @UserId"
                                                     , choiceRoute);
 
             }
