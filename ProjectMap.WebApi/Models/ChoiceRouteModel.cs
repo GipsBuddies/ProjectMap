@@ -17,5 +17,11 @@
         public bool hasCastOnRightArm { get; set; }
         public bool hasCastOnLeftLeg { get; set; }
         public bool hasCastOnRightLeg { get; set; }
+        public int skinTone { get; set; }
+        public int hairStyle { get; set; }
+        public int hairColor { get; set; }
+        public int shirtColor { get; set; }
+        public int pantsColor { get; set; }
+        public int shoeColor { get; set; }
     }
 }
