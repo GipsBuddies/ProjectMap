@@ -25,7 +25,6 @@ namespace ProjectMap.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult> Add(ChoiceRouteModel choiceRoute)
         {
-            choiceRoute.Id = Guid.NewGuid();
             choiceRoute.UserId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
             var createdAppointment = await _choiceRouteRepository.InsertAsync(choiceRoute );
             return Created();

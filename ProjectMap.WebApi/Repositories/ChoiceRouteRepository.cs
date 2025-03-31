@@ -17,7 +17,7 @@ namespace ProjectMap.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                var result = await sqlConnection.ExecuteAsync("INSERT INTO [ChoiceRoute] (Id, UserId, Path, Begining, Middel, Finish, NamePatient, BirthDate, NameDoctor, characterType, castColor, hasCastOnLeftArm, hasCastOnRightArm, hasCastOnLeftLeg, hasCastOnRightLeg, skinTone, hairStyle, hairColor, shirtColor, pantsColor, shoeColor) VALUES (@Id, @UserId, @Path, @Begining, @Middel, @Finish, @NamePatient, @BirthDate, @NameDoctor, @characterType, @castColor, @hasCastOnLeftArm, @hasCastOnRightArm, @hasCastOnLeftLeg, @hasCastOnRightLeg, @skinTone, @hairStyle, @hairColor, @shirtColor, @pantsColor, @shoeColor)", choiceRoute );
+                var result = await sqlConnection.ExecuteAsync("INSERT INTO [ChoiceRoute] (UserId, Path, Begining, Middel, Finish, NamePatient, BirthDate, NameDoctor, characterType, castColor, hasCastOnLeftArm, hasCastOnRightArm, hasCastOnLeftLeg, hasCastOnRightLeg, skinTone, hairStyle, hairColor, shirtColor, pantsColor, shoeColor) VALUES (@UserId, @Path, @Begining, @Middel, @Finish, @NamePatient, @BirthDate, @NameDoctor, @characterType, @castColor, @hasCastOnLeftArm, @hasCastOnRightArm, @hasCastOnLeftLeg, @hasCastOnRightLeg, @skinTone, @hairStyle, @hairColor, @shirtColor, @pantsColor, @shoeColor)", choiceRoute );
                 return choiceRoute;
             }
         }
