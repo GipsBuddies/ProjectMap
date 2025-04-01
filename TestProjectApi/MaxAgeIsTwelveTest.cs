@@ -9,7 +9,7 @@ using ProjectMap.WebApi.Repositories;
 namespace TestProjectApi;
 
 [TestClass]
-public class IsDateValid
+public class MaxAgeIsTwelveTest
 {
     [TestMethod]
     public virtual async Task DateValidationWithValidDateTest()
@@ -20,7 +20,7 @@ public class IsDateValid
         ChoiceRouteModel choiceRoute = new ChoiceRouteModel
         {
             UserId = userId,
-            BirthDate = new DateTime(2025, 4, 1)
+            BirthDate = DateTime.Today.AddYears(-12)
         };
 
         var mockChoiceRouteRepository = new Mock<IChoiceRouteRepository>();
@@ -53,7 +53,7 @@ public class IsDateValid
         ChoiceRouteModel choiceRoute = new ChoiceRouteModel
         {
             UserId = userId,
-            BirthDate = DateTime.MinValue
+            BirthDate = DateTime.Today.AddYears(-12).AddDays(-1)
         };
 
         var mockChoiceRouteRepository = new Mock<IChoiceRouteRepository>();

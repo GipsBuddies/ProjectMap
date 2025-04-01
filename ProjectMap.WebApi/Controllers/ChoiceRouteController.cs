@@ -25,14 +25,12 @@ namespace ProjectMap.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult> Add(ChoiceRouteModel choiceRoute)
         {
-            if (choiceRoute.BirthDate <= DateTime.MinValue)
+            if (choiceRoute.BirthDate < DateTime.Today.AddYears(-12))
             {
                 return BadRequest();
             }
 
-            choiceRoute.UserId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
-
-            if(choiceRoute.NameDoctor == "")
+            if (choiceRoute.NameDoctor == "")
             {
                 return BadRequest();
             }
@@ -41,6 +39,8 @@ namespace ProjectMap.WebApi.Controllers
             {
                 return BadRequest();
             }
+
+            choiceRoute.UserId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
 
             var createdAppointment = await _choiceRouteRepository.InsertAsync(choiceRoute );
             return Created();
