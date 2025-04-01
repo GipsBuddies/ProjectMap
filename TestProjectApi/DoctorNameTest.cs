@@ -28,7 +28,8 @@ public class DoctorNameTest
         ChoiceRouteModel choiceRoute = new ChoiceRouteModel
         {
             UserId = userId,
-            NameDoctor = "name"
+            NameDoctor = "name",
+            BirthDate = new DateTime(2025, 4, 1)
         };
 
         // Act
@@ -56,12 +57,13 @@ public class DoctorNameTest
         ChoiceRouteModel choiceRoute = new ChoiceRouteModel
         {
             UserId = userId,
-            NameDoctor = ""
+            NameDoctor = "",
+            BirthDate = new DateTime(2025, 4, 1)
         };
 
         // Act
         var response = await ChoiceRouteController.Add(choiceRoute);
         // Assert
-        Assert.IsInstanceOfType(response, out BadRequestResult createdObjectResult);
+        Assert.IsInstanceOfType(response, out BadRequestResult BadRequestResult);
     }
 }

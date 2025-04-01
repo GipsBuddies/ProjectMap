@@ -31,6 +31,12 @@ namespace ProjectMap.WebApi.Controllers
             }
 
             choiceRoute.UserId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
+
+            if (choiceRoute.NameDoctor == "")
+            {
+                return BadRequest();
+            }
+
             var createdAppointment = await _choiceRouteRepository.InsertAsync(choiceRoute );
             return Created();
         }
