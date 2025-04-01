@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace TestProjectApi;
 
 [TestClass]
-public class DoctorNameTest
+public class ChildNameTest
 {
     [TestMethod]
     public async Task AddingDoctorNameWithActualNameShouldReturnCreatedResult()
@@ -17,18 +17,18 @@ public class DoctorNameTest
         // Arrange
         Guid userId = Guid.NewGuid();
         var MockChoiceRouteRepository = new Mock<IChoiceRouteRepository>();
-        
+
         var mockAuthenticationService = new Mock<IAuthenticationService>();
         mockAuthenticationService.Setup(authenticationService => authenticationService.GetCurrentAuthenticatedUserId())
                     .Returns(userId.ToString);
 
         var logger = new Mock<Microsoft.Extensions.Logging.ILogger<ChoiceRouteController>>();
         var ChoiceRouteController = new ChoiceRouteController(MockChoiceRouteRepository.Object, logger.Object, mockAuthenticationService.Object);
-        
+
         ChoiceRouteModel choiceRoute = new ChoiceRouteModel
         {
             UserId = userId,
-            NameDoctor = "Dr. Smith",
+            NamePatient = "Alex",
             BirthDate = new DateTime(2025, 4, 1)
         };
 
@@ -57,7 +57,7 @@ public class DoctorNameTest
         ChoiceRouteModel choiceRoute = new ChoiceRouteModel
         {
             UserId = userId,
-            NameDoctor = "",
+            NamePatient = "",
             BirthDate = new DateTime(2025, 4, 1)
         };
 

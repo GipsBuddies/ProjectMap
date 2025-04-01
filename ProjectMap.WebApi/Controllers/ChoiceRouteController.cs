@@ -32,7 +32,12 @@ namespace ProjectMap.WebApi.Controllers
 
             choiceRoute.UserId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
 
-            if (choiceRoute.NameDoctor == "")
+            if(choiceRoute.NameDoctor == "")
+            {
+                return BadRequest();
+            }
+
+            if(choiceRoute.NamePatient == "")
             {
                 return BadRequest();
             }
