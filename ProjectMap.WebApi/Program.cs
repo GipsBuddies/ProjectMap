@@ -26,6 +26,9 @@ var sqlConnectionString = builder.Configuration["SqlConnectionString"];
 if (string.IsNullOrWhiteSpace(sqlConnectionString))
     throw new InvalidProgramException("Configuration variable SqlConnectionString not found");
 
+
+
+
 //place to add builder.services.addtransient.
 
 //authorization services
@@ -37,6 +40,8 @@ builder.Services
         options.ConnectionString = sqlConnectionString;
     });
 
+builder.Services.AddScoped<IChoiceRouteRepository, ChoiceRouteRepository>(
+    o => new ChoiceRouteRepository(sqlConnectionString));
 
 
 builder.Services.AddHttpContextAccessor();

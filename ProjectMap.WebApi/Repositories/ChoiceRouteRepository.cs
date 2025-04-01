@@ -1,10 +1,11 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using ProjectMap.WebApi.Interfaces;
 using ProjectMap.WebApi.Models;
 
 namespace ProjectMap.WebApi.Repositories
 {
-    public class ChoiceRouteRepository
+    public class ChoiceRouteRepository : IChoiceRouteRepository
     {
         private readonly string sqlConnectionString;
 
@@ -13,11 +14,11 @@ namespace ProjectMap.WebApi.Repositories
             this.sqlConnectionString = sqlConnectionString;
         }
 
-        public async Task<ChoiceRouteModel> InsertAsync(ChoiceRouteModel choiceRoute) 
+        public async Task<ChoiceRouteModel> InsertAsync(ChoiceRouteModel choiceRoute)
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                var result = await sqlConnection.ExecuteAsync("INSERT INTO [ChoiceRoute] (UserId, Path, Begining, Middel, Finish, NamePatient, BirthDate, NameDoctor, characterType, castColor, hasCastOnLeftArm, hasCastOnRightArm, hasCastOnLeftLeg, hasCastOnRightLeg, skinTone, hairStyle, hairColor, shirtColor, pantsColor, shoeColor) VALUES (@UserId, @Path, @Begining, @Middel, @Finish, @NamePatient, @BirthDate, @NameDoctor, @characterType, @castColor, @hasCastOnLeftArm, @hasCastOnRightArm, @hasCastOnLeftLeg, @hasCastOnRightLeg, @skinTone, @hairStyle, @hairColor, @shirtColor, @pantsColor, @shoeColor)", choiceRoute );
+                var result = await sqlConnection.ExecuteAsync("INSERT INTO [ChoiceRoute] (UserId, Path, Begining, Middel, Finish, NamePatient, BirthDate, NameDoctor, characterType, castColor, hasCastOnLeftArm, hasCastOnRightArm, hasCastOnLeftLeg, hasCastOnRightLeg, skinTone, hairStyle, hairColor, shirtColor, pantsColor, shoeColor) VALUES (@UserId, @Path, @Begining, @Middel, @Finish, @NamePatient, @BirthDate, @NameDoctor, @characterType, @castColor, @hasCastOnLeftArm, @hasCastOnRightArm, @hasCastOnLeftLeg, @hasCastOnRightLeg, @skinTone, @hairStyle, @hairColor, @shirtColor, @pantsColor, @shoeColor)", choiceRoute);
                 return choiceRoute;
             }
         }
@@ -65,8 +66,8 @@ namespace ProjectMap.WebApi.Repositories
         public async Task<IEnumerable<ChoiceRouteModel>> ReadAsync(Guid userId)
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
-            { 
-                return await sqlConnection.QueryAsync<ChoiceRouteModel>("SELECT * FROM [ChoiceRoute] WHERE Userid = @Userid", new { userId});
+            {
+                return await sqlConnection.QueryAsync<ChoiceRouteModel>("SELECT * FROM [ChoiceRoute] WHERE Userid = @Userid", new { userId });
             }
         }
     }

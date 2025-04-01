@@ -10,11 +10,11 @@ namespace ProjectMap.WebApi.Controllers
     [Route("ChoiceRoute")]
     public class ChoiceRouteController : Controller
     {
-        private readonly ChoiceRouteRepository _choiceRouteRepository;
+        private readonly IChoiceRouteRepository _choiceRouteRepository;
         private readonly ILogger<ChoiceRouteController> _logger;
         private readonly IAuthenticationService _authenticationService;
 
-        public ChoiceRouteController(ChoiceRouteRepository choiceRouteRepository, ILogger<ChoiceRouteController> logger, IAuthenticationService authenticationService)
+        public ChoiceRouteController(IChoiceRouteRepository choiceRouteRepository, ILogger<ChoiceRouteController> logger, IAuthenticationService authenticationService)
         {
             _choiceRouteRepository = choiceRouteRepository;
             _logger = logger;
