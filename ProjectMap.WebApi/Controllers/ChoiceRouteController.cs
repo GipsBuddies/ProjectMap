@@ -25,6 +25,11 @@ namespace ProjectMap.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult> Add(ChoiceRouteModel choiceRoute)
         {
+            if (choiceRoute.BirthDate <= DateTime.MinValue)
+            {
+                return BadRequest();
+            }
+
             choiceRoute.UserId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
             var createdAppointment = await _choiceRouteRepository.InsertAsync(choiceRoute );
             return Created();
