@@ -1,10 +1,11 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using ProjectMap.WebApi.Interfaces;
 using ProjectMap.WebApi.Models;
 
 namespace ProjectMap.WebApi.Repositories
 {
-    public class AppointmentRepository
+    public class AppointmentRepository : IAppointmentRepository
     {
         private readonly string sqlConnectionString;
 
@@ -38,7 +39,7 @@ namespace ProjectMap.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("DELETE FROM [Appointments] WHERE Id = @Id", new { Id = id});
+                await sqlConnection.ExecuteAsync("DELETE FROM [Appointments] WHERE Id = @Id", new { Id = id });
             }
         }
     }
