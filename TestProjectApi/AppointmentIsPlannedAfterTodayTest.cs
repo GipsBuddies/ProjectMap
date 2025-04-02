@@ -55,13 +55,13 @@ public class AppointmentIsPlannedAfterTodayTest
         };
 
         var mockAppointmentRepository = new Mock<IAppointmentRepository>();
-        mockAppointmentRepository.Setup(repo => repo.InsertAsync(appointment))
+        mockAppointmentRepository.Setup(appointmentRepository => appointmentRepository.InsertAsync(appointment))
                     .ReturnsAsync(appointment);
 
         var logger = new Mock<ILogger<AppointmentController>>();
 
         var mockAuthenticationService = new Mock<IAuthenticationService>();
-        mockAuthenticationService.Setup(auth => auth.GetCurrentAuthenticatedUserId())
+        mockAuthenticationService.Setup(authentication => authentication.GetCurrentAuthenticatedUserId())
                     .Returns(userId.ToString);
 
         AppointmentController controller = new AppointmentController(mockAppointmentRepository.Object, logger.Object, mockAuthenticationService.Object);
