@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using ProjectMap.WebApi;
+using ProjectMap.WebApi.Interfaces;
 using ProjectMap.WebApi.Repositories;
 
 
@@ -40,8 +41,12 @@ builder.Services
         options.ConnectionString = sqlConnectionString;
     });
 
+
 builder.Services.AddScoped<IChoiceRouteRepository, ChoiceRouteRepository>(
     o => new ChoiceRouteRepository(sqlConnectionString));
+
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>(
+    o => new AppointmentRepository(sqlConnectionString));
 
 
 builder.Services.AddHttpContextAccessor();
