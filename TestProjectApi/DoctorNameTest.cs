@@ -29,7 +29,8 @@ public class DoctorNameTest
         {
             UserId = userId,
             NameDoctor = "Dr. Smith",
-            BirthDate = new DateTime(2025, 4, 1)
+            BirthDate = new DateTime(2025, 4, 1),
+            castColor = 2
         };
 
         // Act

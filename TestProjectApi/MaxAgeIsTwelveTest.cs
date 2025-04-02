@@ -20,7 +20,8 @@ public class MaxAgeIsTwelveTest
         ChoiceRouteModel choiceRoute = new ChoiceRouteModel
         {
             UserId = userId,
-            BirthDate = DateTime.Today.AddYears(-12)
+            BirthDate = DateTime.Today.AddYears(-12),
+            castColor = 2
         };
 
         var mockChoiceRouteRepository = new Mock<IChoiceRouteRepository>();
@@ -53,7 +54,8 @@ public class MaxAgeIsTwelveTest
         ChoiceRouteModel choiceRoute = new ChoiceRouteModel
         {
             UserId = userId,
-            BirthDate = DateTime.Today.AddYears(-12).AddDays(-1)
+            BirthDate = DateTime.Today.AddYears(-12).AddDays(-1),
+            castColor = 2
         };
 
         var mockChoiceRouteRepository = new Mock<IChoiceRouteRepository>();

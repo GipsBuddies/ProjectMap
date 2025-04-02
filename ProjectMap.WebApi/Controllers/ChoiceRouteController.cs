@@ -39,6 +39,11 @@ namespace ProjectMap.WebApi.Controllers
             {
                 return BadRequest();
             }
+            
+            if(choiceRoute.castColor < 1 || choiceRoute.castColor > 4)
+            {
+                return BadRequest();
+            }
 
             choiceRoute.UserId = Guid.Parse(_authenticationService.GetCurrentAuthenticatedUserId());
 
