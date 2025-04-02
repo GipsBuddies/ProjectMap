@@ -56,7 +56,7 @@ namespace ProjectMap.WebApi.Repositories
                                                     "hairColor = @hairColor, " +
                                                     "shirtColor = @shirtColor, " +
                                                     "pantsColor = @pantsColor, " +
-                                                    "shoeColor = shoeColor " +
+                                                    "shoeColor = @shoeColor " +
                                                     "WHERE UserId = @UserId"
                                                     , choiceRoute);
 
